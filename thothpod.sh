@@ -14,8 +14,8 @@
 BASEDIR=`pwd`
 
 # DAILYLOG/PERMLOG: Location and name of daily and permanent log files
-DAILYLOG=../dailypodcastlog.txt
-PERMLOG=../permpodcastlog.txt
+DAILYLOG=dailypodcastlog.txt
+PERMLOG=permpodcastlog.txt
 
 # Now, the actual wrapper part.  First, run mashpodder and send output to
 # the $DAILYLOG:

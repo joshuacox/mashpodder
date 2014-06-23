@@ -1,4 +1,7 @@
-mashpodder
+#mashpodder
+
+##personal fork containing my list of podcasts
+
 
 podcatching client based on BashPodder
 

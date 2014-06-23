@@ -31,6 +31,7 @@
 # and set the various options. Uncomment and set to desired path.
 # Mashpodder will not create this directory for you.
 #BASEDIR="$HOME/mashpodder"
+BASEDIR=`pwd`
 
 # RSSFILE: Location of mp.conf file.  Can be changed to another file name.
 # Default is "$BASEDIR/mp.conf".

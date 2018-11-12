@@ -19,7 +19,7 @@ PERMLOG=permpodcastlog.txt
 
 # Now, the actual wrapper part.  First, run mashpodder and send output to
 # the $DAILYLOG:
-bash $BASEDIR/mashpodder.sh -v > $DAILYLOG
+bash "$BASEDIR/mashpodder.sh" -v > $DAILYLOG
 
 # Next, concatenate this to the $PERMLOG.
 cat $DAILYLOG >> $PERMLOG

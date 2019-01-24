@@ -43,7 +43,7 @@ RSSFILE="$BASEDIR/mp.conf"
 # reporting the issues that led to these directory changes.  Mashpodder will
 # create this directory if it does not exist unless $CREATE_PODCASTDIR is
 # set to "".
-PODCASTDIR="$BASEDIR/podcasts"
+PODCASTDIR="$BASEDIR/PODCASTS"
 
 # CREATE_PODCASTDIR: Default "1" will create the directory for you if it
 # does not exist; "" means to fail and exit if $PODCASTDIR does not exist.

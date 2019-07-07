@@ -127,6 +127,8 @@ WGET_TIMEOUT="30"
 # /usr/local/bin.  Defaults are Linux locations (i.e. /usr/bin).
 WGET=${WGET:-"/usr/bin/wget"}
 CURL=${CURL:-"/usr/bin/curl"}
+PARALLEL=${PARALLEL:-"/usr/bin/parallel"}
+PARALLEL_JOBS=${PARALLEL_JOBS:-"5"}
 XSLTPROC=${XSLTPROC:-"/usr/bin/xsltproc"}
 
 ### END USER CONFIGURATION
@@ -354,6 +356,8 @@ fetch_podcasts () {
     # This is the main loop
     local LINE FEED DATADIR DLNUM COUNTER FILE URL FILENAME DLURL
 
+    # clear hopper
+    echo '' > $TMPDIR/hopper
     # Read the mp.conf file and wget any url not already in the
     # podcast.log file:
     NEWDL=0
@@ -394,6 +398,7 @@ fetch_podcasts () {
           fi
         fi
 
+
         for URL in $FILE; do
             FILENAME=''
             if [ "$DLNUM" = "$COUNTER" ]; then
@@ -424,10 +429,11 @@ fetch_podcasts () {
                         echo "$FILENAME downloaded to $DATADIR" >> $SUMMARYLOG
                     fi
                     cd $TMPDIR
-                    $WGET $WGET_QUIET -c -T $WGET_TIMEOUT -O "$FILENAME" \
-                        "$DLURL"
+                    #$WGET $WGET_QUIET -c -T $WGET_TIMEOUT -O "$FILENAME" \
+                    #    "$DLURL"
+                    echo $WGET $WGET_QUIET -c -T $WGET_TIMEOUT -O $PODCASTDIR/$DATADIR/"$FILENAME" "$DLURL" >> $TMPDIR/hopper
                     ((NEWDL=NEWDL+1))
-                    mv "$FILENAME" $PODCASTDIR/$DATADIR/"$FILENAME"
+                    #mv "$FILENAME" $PODCASTDIR/$DATADIR/"$FILENAME"
                     cd $BASEDIR
                     if [[ -n "$M3U" && -n "$DAILY_PLAYLIST" ]]; then
                         if verbose; then
@@ -464,6 +470,9 @@ fetch_podcasts () {
             echo
         fi
     done < $TEMPRSSFILE
+    shuf $TMPDIR/hopper > $TMPDIR/shufhopper
+    rm $TMPDIR/hopper
+    $PARALLEL  -j $PARALLEL_JOBS -- < $TMPDIR/shufhopper
     if [ ! -f $TEMPLOG ]; then
         if verbose; then
             crunch "Nothing to download."

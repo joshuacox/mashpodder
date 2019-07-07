@@ -96,14 +96,14 @@ FIRST_ONLY=""
 # M3U: Default "" means no m3u playlist created; "1" will create m3u
 # playlists in each podcast's directory listing all the files in that
 # directory.
-M3U=""
+M3U="1"
 
 # DAILY_PLAYLIST: Default "" means no daily m3u playlist created; "1" will
 # create an m3u playlist in $PODCASTDIR listing all newly downloaded
 # shows.  The m3u filename will have the $DATESTRING prepended to it and
 # additional new downloads for that day will be added to the file.  NOTE:
 # $M3U must also be set to "1" for this to work.
-DAILY_PLAYLIST=""
+DAILY_PLAYLIST="1"
 
 # UPDATE: Default "" means look to mp.conf on whether to download or
 # update; "1" will override mp.conf and cause all feeds to be updated
@@ -112,7 +112,7 @@ DAILY_PLAYLIST=""
 UPDATE=""
 
 # VERBOSE: Default "" is quiet output; "1" is verbose.
-VERBOSE=""
+VERBOSE="1"
 
 # WGET_QUIET: Default is "-q" for quiet wget output; change to "" for wget
 # output.
